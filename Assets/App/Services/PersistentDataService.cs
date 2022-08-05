@@ -60,7 +60,7 @@ namespace App.Services {
             //return result.request.downloadHandler.text;
             //var result = MakePersistentFilename(path).GetAsync();
             //return Task.Run(() => Task.FromResult(ReadStringAsync(result))).Result.Result;
-            return null;
+            //return null;
         }
 
         Task<string> ReadStringAsync(string path) {

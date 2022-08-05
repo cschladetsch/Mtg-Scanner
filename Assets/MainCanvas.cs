@@ -8,6 +8,7 @@ public class MainCanvas : MonoBehaviour
 
     private void Start()
     {
+        BetterStreamingAssets.Initialize();
         SelectMain();
     }
 

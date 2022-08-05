@@ -21,6 +21,7 @@ namespace App.MtgService {
             get { return "Test"; } 
             set {}  
         }
+        private PersistentDataService persistentDataService;
 
         public string DataPath;
         public IEnumerable<string> allExisitingCardnames => _allCardNames?.data;
@@ -28,7 +29,6 @@ namespace App.MtgService {
         public string AllCardsFileName => Path.Combine(DataPath, "AllCards.json");
 
         private PersistentLibrary _library;
-        private AllCardNames _allCardNames;
         private DateTime _lastQuery;
         private string _visionApiKey;
         private static Logger Log = new Logger(typeof(CardLibraryService));
@@ -44,15 +44,14 @@ namespace App.MtgService {
             public List<string> data;
         }
         private PersistentDataService _persistentDataService;
+        private AllCardNames _allCardNames = new AllCardNames();
 
         public override string ToString() {
             return "A Library";
         }
 
-        public IEnumerable<Card> Cards
-        {
-            get
-            {
+        public IEnumerable<Card> Cards {
+            get {
                 foreach (var kv in _library.Counts) {
                     for (var n = 0; n < kv.Value; ++n) {
                         yield return _library.Cards[kv.Key];
@@ -65,7 +64,7 @@ namespace App.MtgService {
             _persistentDataService = FindObjectOfType<PersistentDataService>();
             DataPath = UnityEngine.Application.dataPath;
             Log.Warning("DataPath: " + DataPath);
-            _visionApiKey = _persistentDataService.ReadString(GoogleVisionApiKeyFileName);
+            _visionApiKey = "AIzaSyC9X6yvf2PVjyi7I47hVk7SB81_fORqvfs";// _persistentDataService.ReadString(GoogleVisionApiKeyFileName);
             Log.Info("key=" + _visionApiKey);
 
             return;
